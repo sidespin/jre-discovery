@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="io.sidespin.jre.discovery.feature"
+      label="JRE Discovery Feature"
+      provider-name="%providerName"
+      version="0.0.1.qualifier"
+      license-feature="org.eclipse.license"
+      license-feature-version="0.0.0"
+      >
+
+   <description url="%descriptionURL">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+   </license>
+
+   <plugin
+         id="io.sidespin.jre.discovery.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="io.sidespin.jre.discovery.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

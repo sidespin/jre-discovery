@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/io.sidespin.jre.discovery.feature_0.0.0.jar" id="io.sidespin.jre.discovery.feature" version="0.0.0">
+    <category name="jre.discovery"/>
+   </feature>
+   <feature url="features/io.sidespin.jre.discovery.feature.source_0.0.0.jar" id="io.sidespin.jre.discovery.feature" version="0.0.0">
+    <category name="jre.discovery"/>
+   </feature>
+   <category-def name="jre.discovery" label="JRE Discovery"/>
+</site>

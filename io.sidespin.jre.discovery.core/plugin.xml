@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+<extension-point id="managedVMDetectorDefinition"
+					name="Managed VM Detector Definition"
+					schema="schemas/managedVMDetectorDefinition.exsd" />
+<extension
+         point="io.sidespin.jre.discovery.core.managedVMDetectorDefinition">
+      <simpleDetector
+            id="sdkman"
+            label="SDKMan"
+            directory="~/.sdkman/candidates/java"
+            isWatchingByDefault="true"
+       />
+       <simpleDetector
+       		id="jbang"
+       		label="JBang"
+       		directory="~/.jbang/cache/jdks"
+       		isWatchingByDefault="true"
+       />
+       <simpleDetector
+       		id="jabba"
+       		label="Jabba"
+       		directory="~/.jabba/jdk"
+       		isWatchingByDefault="true"
+       />
+       <simpleDetector
+       		id="asdf"
+       		label="asdf"
+       		directory="~/.asdf/installs/java"
+       		isWatchingByDefault="true"
+       />
+   </extension>
+</plugin>

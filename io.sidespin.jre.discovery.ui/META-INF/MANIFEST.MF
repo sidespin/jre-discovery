@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Java Runtime Lookup UI
+Bundle-SymbolicName: io.sidespin.jre.discovery.ui;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: io.sidespin.eclipse.jre.discovery.ui.internal.ManagedVMUIActivator
+Require-Bundle: io.sidespin.jre.discovery.core;bundle-version="0.0.1",
+ org.eclipse.ui,
+ org.eclipse.osgi,
+ org.eclipse.equinox.preferences,
+ org.eclipse.jdt.launching,
+ org.eclipse.jface.notifications,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: io.sidespin.jre.discovery.ui

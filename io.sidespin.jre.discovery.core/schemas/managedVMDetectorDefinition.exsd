@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="io.sidespin.eclipse.jre.discovery.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="io.sidespin.eclipse.jre.discovery.core" id="managedVMDetectorDefinition" name="managedVMDetectorDefinition"/>
+      </appinfo>
+      <documentation>
+         This extension point allows extensions to contribute Java VM Detectors.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="simpleDetector"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="simpleDetector">
+      <annotation>
+         <documentation>
+            TODO
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Id of this detector
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="label" type="string" use="required">
+            <annotation>
+               <documentation>
+                  label of this detector
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="directory" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Directory of this detector
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="isWatchingByDefault" type="boolean" use="required">
+            <annotation>
+               <documentation>
+                  Is this detector watching the directory by default?
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         0.0.1
+      </documentation>
+   </annotation>
+
+
+
+
+
+</schema>

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JRE Dicovery Core
+Bundle-SymbolicName: io.sidespin.jre.discovery.core;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: io.sidespin.eclipse.jre.discovery.core.internal.ManagedVMCorePlugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.jdt.launching;bundle-version="3.10.0",
+ org.eclipse.debug.core;bundle-version="3.15.0",
+ org.eclipse.jdt.debug;bundle-version="3.15.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: io.sidespin.jre.discovery.core
+Export-Package: io.sidespin.eclipse.jre.discovery.core.internal
