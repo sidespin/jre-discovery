@@ -79,7 +79,7 @@ public class ManagedVMService implements ManagedVMEventListener {
 	private String getName(String prefix, File directory) {
 		var release = readRelease(directory);
 		var name = release.get(IMPLEMENTOR_VERSION);
-		if (NOT_VERSION_PATTERN.matcher(name).matches()) {
+		if (name != null && NOT_VERSION_PATTERN.matcher(name).matches()) {
 			name = release.get(IMPLEMENTOR);
 		}
 		if (name == null) {

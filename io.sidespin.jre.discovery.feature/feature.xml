@@ -16,9 +16,6 @@
       %copyright
    </copyright>
 
-   <license url="%licenseURL">
-   </license>
-
    <plugin
          id="io.sidespin.jre.discovery.core"
          download-size="0"
