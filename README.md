@@ -7,6 +7,9 @@ It currently detects JREs managed by :
 - [Jabba](https://github.com/shyiko/jabba) 
 - [JBang](https://www.jbang.dev/)
 
+Managed JREs will be automatically discovered on Eclipse startup, or, while running, when added by their respective Java managers.
+
+![Detected JREs](images/jre-discovery.png)
 
 Installation
 ------------
