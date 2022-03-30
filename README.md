@@ -14,7 +14,9 @@ Managed JREs will be automatically discovered on Eclipse startup, or, while runn
 
 Installation
 ------------
-You can install it directly from the [Eclipse Marketplace](https://marketplace.eclipse.org/content/jre-discovery).
+_JRE Discovery_ is available in the [Eclipse Marketplace](https://marketplace.eclipse.org/content/jre-discovery). Drag to the following button to your running Eclipse workspace. (⚠ *Requires the Eclipse Marketplace Client*)
+
+[![Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace the Client](https://marketplace.eclipse.org/sites/all/themes/solstice/public/images/marketplace/btn-install.svg)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=5514555 "Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client")
 
 Alternatively, in Eclipse:
 
