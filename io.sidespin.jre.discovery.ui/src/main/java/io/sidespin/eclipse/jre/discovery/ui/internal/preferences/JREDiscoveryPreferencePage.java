@@ -33,6 +33,7 @@ public class JREDiscoveryPreferencePage extends FieldEditorPreferencePage implem
 
   @Override
   public void init(IWorkbench workbench) {
+	  setDescription("Automatically detect JREs managed by SDKMan, JBang, asdf or Jabba.");
   }
 
   @Override

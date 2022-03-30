@@ -14,7 +14,7 @@ Managed JREs will be automatically discovered on Eclipse startup, or, while runn
 
 Automatic detection can be disabled from the `JRE Discovery` preference page:
 
-![`JRE Discovery` preference page](images/jre-discovery-prefs.png)
+<img src="images/jre-discovery-prefs.png" width="600" />
 
 Installation
 ------------
