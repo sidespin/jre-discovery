@@ -1,3 +1,4 @@
+[![](https://img.shields.io/eclipse-marketplace/v/jre-discovery?color=light-green)](https://marketplace.eclipse.org/content/jre-discovery)
 # JRE Discovery
 
 This feature allows the automatic discovery of managed Java Runtime Environments in Eclipse. 
@@ -13,8 +14,9 @@ Managed JREs will be automatically discovered on Eclipse startup, or, while runn
 
 Installation
 ------------
+You can install it directly from the [Eclipse Marketplace](https://marketplace.eclipse.org/content/jre-discovery).
 
-In Eclipse:
+Alternatively, in Eclipse:
 
 - open Help > Install New Software...
 - work with: `https://sidespin.github.io/jre-discovery/snapshots`
@@ -26,10 +28,15 @@ In Eclipse:
 Build
 -----
 
-Open a terminal and execute:
+Open a terminal and execute the following command:
+- On Linux/Mac:
 
-    ./mvnw clean verify
+> ./mvnw clean verify
     
+- On Windows:
+    
+> mvnw.cmd clean verify
+
 You can then install the generated update site from `io.sidespin.jre.discovery.site/target/io.sidespin.jre.discovery.site-<VERSION>-SNAPSHOT.zip`
 
 # License
