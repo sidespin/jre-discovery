@@ -32,6 +32,7 @@ public class ManagedVMUIActivator implements BundleActivator {
 
   @Override
   public void start(BundleContext context) throws Exception {
+	//HACK trigger the core plugin activation by calling a method from its activator
     System.err.println("Starting " + ManagedVMCorePlugin.getUniqueIdentifier());
     notificationJob = new ManagedVMNotificationAggregatorJob();
     notificationCenter = new ManagedVMNotificationCenter(notificationJob);

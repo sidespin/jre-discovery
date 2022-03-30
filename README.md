@@ -12,6 +12,10 @@ Managed JREs will be automatically discovered on Eclipse startup, or, while runn
 
 ![Detected JREs](images/jre-discovery.png)
 
+Automatic detection can be disabled from the `JRE Discovery` preference page:
+
+![`JRE Discovery` preference page](images/jre-discovery-prefs.png)
+
 Installation
 ------------
 _JRE Discovery_ is available in the [Eclipse Marketplace](https://marketplace.eclipse.org/content/jre-discovery). Drag to the following button to your running Eclipse workspace. (⚠ *Requires the Eclipse Marketplace Client*)

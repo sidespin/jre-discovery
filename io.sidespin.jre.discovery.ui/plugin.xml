@@ -6,4 +6,12 @@
       <startup
             class="io.sidespin.eclipse.jre.discovery.ui.internal.Startup"></startup>
    </extension>
+   <extension
+      point = "org.eclipse.ui.preferencePages">
+       <page id="io.sidespin.eclipse.jre.discovery.ui.preferences.JREDiscoveryPreferencePage"
+	    class="io.sidespin.eclipse.jre.discovery.ui.internal.preferences.JREDiscoveryPreferencePage"
+	        category="org.eclipse.jdt.debug.ui.preferences.VMPreferencePage"
+            name="JRE Discovery">
+       </page>
+   </extension>
 </plugin>

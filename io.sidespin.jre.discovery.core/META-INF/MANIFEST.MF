@@ -11,4 +11,5 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: io.sidespin.jre.discovery.core
-Export-Package: io.sidespin.eclipse.jre.discovery.core.internal
+Export-Package: io.sidespin.eclipse.jre.discovery.core.internal,
+ io.sidespin.eclipse.jre.discovery.core.internal.preferences

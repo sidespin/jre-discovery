@@ -14,8 +14,13 @@
 package io.sidespin.eclipse.jre.discovery.core.internal;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.osgi.framework.BundleContext;
+
+import io.sidespin.eclipse.jre.discovery.core.internal.preferences.JREDiscoveryPreferences;
 
 public class ManagedVMCorePlugin extends Plugin {
 
@@ -42,10 +47,19 @@ public class ManagedVMCorePlugin extends Plugin {
 		super.start(context);
 		vmService = new ManagedVMService();
 		vmDetectorManager = new VMDetectorManager(vmService);
+		IEclipsePreferences prefs = InstanceScope.INSTANCE.getNode(Constants.PLUGIN_ID);
+		prefs.addPreferenceChangeListener(vmDetectorManager);		
 		vmDetectorManager.initialize();
-		vmDetectorManager.startWatchingVMs();
+		boolean isWatchingEnabled = prefs.getBoolean(JREDiscoveryPreferences.WATCH_JRE_DIRECTORIES_KEY, true);
+		if (isWatchingEnabled) {
+			vmDetectorManager.startWatchingVMs();
+		}
 		updateVMJob = new UpdateVMsJob(vmService, vmDetectorManager);
-		updateVMJob.schedule(1000);
+
+		boolean isAutomaticDiscoveryEnabled = prefs.getBoolean(JREDiscoveryPreferences.ENABLED_ON_STARTUP_KEY, true);
+		if (isAutomaticDiscoveryEnabled) {
+			updateVMJob.schedule(1000);
+		}
 	}
 
 	@Override
@@ -54,6 +68,7 @@ public class ManagedVMCorePlugin extends Plugin {
 			updateVMJob.cancel();
 		}
 		if (vmDetectorManager != null) {
+			InstanceScope.INSTANCE.getNode(Constants.PLUGIN_ID).removePreferenceChangeListener(vmDetectorManager);
 			vmDetectorManager.stopWatchingVMs();
 			vmDetectorManager = null;
 		}
@@ -61,10 +76,7 @@ public class ManagedVMCorePlugin extends Plugin {
 		super.stop(context);
 	}
 
-	/*
-	 * Convenience method which returns the unique identifier of this plug-in.
-	 */
 	public static String getUniqueIdentifier() {
-		return "io.sidespin.jre.discovery.core"; //$NON-NLS-1$
+		return Constants.PLUGIN_ID; //$NON-NLS-1$
 	}
 }

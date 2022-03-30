@@ -30,4 +30,7 @@
        		isWatchingByDefault="true"
        />
    </extension>
+   <extension point="org.eclipse.core.runtime.preferences">
+      <initializer class="io.sidespin.eclipse.jre.discovery.core.internal.preferences.JREDiscoveryPreferenceInitializer"/>
+   </extension>
 </plugin>

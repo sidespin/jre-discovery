@@ -25,16 +25,21 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 
 import io.sidespin.eclipse.jre.discovery.core.IManagedVMDetector;
 import io.sidespin.eclipse.jre.discovery.core.IManagedVMWatcher;
 import io.sidespin.eclipse.jre.discovery.core.ManagedVM;
+import io.sidespin.eclipse.jre.discovery.core.internal.preferences.JREDiscoveryPreferences;
 
 /**
  * @author Fred Bricon
  *
  */
-public class VMDetectorManager {
+public class VMDetectorManager implements IPreferenceChangeListener {
 
 	private Set<IManagedVMDetector> detectors = new LinkedHashSet<>();
 	private boolean watching;
@@ -142,6 +147,17 @@ public class VMDetectorManager {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void preferenceChange(PreferenceChangeEvent event) {
+		if (JREDiscoveryPreferences.WATCH_JRE_DIRECTORIES_KEY.equals(event.getKey())) {
+			if (Boolean.parseBoolean(String.valueOf(event.getNewValue()))) {
+				startWatchingVMs();
+			} else {
+				stopWatchingVMs();
+			}
 		}
 	}
 
