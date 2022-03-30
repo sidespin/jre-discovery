@@ -24,8 +24,12 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 
 import io.sidespin.eclipse.jre.discovery.core.IManagedVMDetector;
 import io.sidespin.eclipse.jre.discovery.core.IManagedVMWatcher;
@@ -70,10 +74,7 @@ public class VMWatcherService implements IManagedVMWatcher {
 						System.err.println(event.kind() + " " + spath);
 						File file = directory.resolve(spath).toFile();
 						if (StandardWatchEventKinds.ENTRY_CREATE.equals(event.kind()) && file.isDirectory()) {
-							var vms = detector.detectVMs(new NullProgressMonitor());
-							for (var managedVM : vms) {
-								emitVMAddedEvent(managedVM);
-							}
+							new DelayedSearchJob(detector).schedule(500);
 						} else if (StandardWatchEventKinds.ENTRY_DELETE.equals(event.kind())) {
 							emitVMDeletedEvent(file);
 						}
@@ -156,6 +157,29 @@ public class VMWatcherService implements IManagedVMWatcher {
 	@Override
 	public boolean isEnabled() {
 		return active;
+	}
+	
+	class DelayedSearchJob extends Job {
+
+		private IManagedVMDetector detector;
+
+		public DelayedSearchJob(IManagedVMDetector detector) {
+			super("Detect JRE in "+detector.getRootDirectory().toPath());
+			this.detector = detector;
+		}
+
+		@Override
+		protected IStatus run(IProgressMonitor monitor) {
+			var vms = detector.detectVMs(monitor);
+			for (var managedVM : vms) {
+				if (monitor.isCanceled()) {
+					return Status.CANCEL_STATUS;
+				}
+				emitVMAddedEvent(managedVM);
+			}
+			return Status.OK_STATUS;
+		}
+		
 	}
 
 }
