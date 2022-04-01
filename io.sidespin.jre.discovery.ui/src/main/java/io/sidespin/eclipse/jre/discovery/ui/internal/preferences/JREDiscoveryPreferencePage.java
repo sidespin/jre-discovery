@@ -46,6 +46,11 @@ public class JREDiscoveryPreferencePage extends FieldEditorPreferencePage implem
     		JREDiscoveryPreferences.WATCH_JRE_DIRECTORIES_KEY, "Watch managed JRE directories",
         getFieldEditorParent());
     addField(watchDirectories);
+    
+    BooleanFieldEditor displayNotifications = new BooleanFieldEditor(
+    		JREDiscoveryPreferences.NOTIFICATIONS_ENABLED_KEY, "Enable notifications when new JREs are detected",
+        getFieldEditorParent());
+    addField(displayNotifications);
   }
 
 }

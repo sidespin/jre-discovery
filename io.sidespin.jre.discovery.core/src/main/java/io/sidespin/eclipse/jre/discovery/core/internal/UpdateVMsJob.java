@@ -30,7 +30,6 @@ public class UpdateVMsJob extends Job {
 		super("JDK detector");
 		this.vmService = vmService;
 		this.detectorManager = detectorManager;
-
 	}
 
 	@Override
@@ -45,7 +44,7 @@ public class UpdateVMsJob extends Job {
 				vmService.addVM(vm, sub.split(1));
 				sub.worked(1);
 			} catch (Exception e) {
-				return Status.error("Failed to add " + vm, e);
+				return Status.error("Failed to add " + vm+"!", e);
 			}
 		}
 		return Status.OK_STATUS;

@@ -34,7 +34,7 @@ public class ManagedVMUIActivator implements BundleActivator {
   public void start(BundleContext context) throws Exception {
 	//HACK trigger the core plugin activation by calling a method from its activator
     System.err.println("Starting " + ManagedVMCorePlugin.getUniqueIdentifier());
-    notificationJob = new ManagedVMNotificationAggregatorJob();
+    notificationJob = new ManagedVMNotificationAggregatorJob(getPreferenceStore());
     notificationCenter = new ManagedVMNotificationCenter(notificationJob);
     // HACK: trigger VM Initialization before registering the
     // VMInstallChangedListener,

@@ -24,21 +24,27 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jdt.launching.IVMInstall;
 import org.eclipse.jface.notifications.AbstractNotificationPopup;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 
+import io.sidespin.eclipse.jre.discovery.core.internal.preferences.JREDiscoveryPreferences;
+
 public class ManagedVMNotificationAggregatorJob extends Job {
 
-	// private static final String JAVA_VM_PREFERENCES_PAGE_ID =
-	// "org.eclipse.jdt.debug.ui.preferences.VMPreferencePage";
+	//private static final String JAVA_VM_PREFERENCES_PAGE_ID = "org.eclipse.jdt.debug.ui.preferences.VMPreferencePage";
 
 	private static final long DELAY = 1000;
 	private final Set<IVMInstall> notifications = new LinkedHashSet<>();
 
-	public ManagedVMNotificationAggregatorJob() {
+	private IPreferenceStore preferenceStore;
+
+	public ManagedVMNotificationAggregatorJob(IPreferenceStore preferenceStore ) {
 		super("Managed VM notification aggregator");
+		this.preferenceStore = preferenceStore;
 	}
 
 	@Override
@@ -54,7 +60,9 @@ public class ManagedVMNotificationAggregatorJob extends Job {
 			currentQueue = new LinkedHashSet<>(this.notifications);
 			notifications.clear();
 		}
-		if (currentQueue.isEmpty()) {
+		boolean enabled = preferenceStore.getBoolean(JREDiscoveryPreferences.NOTIFICATIONS_ENABLED_KEY);
+		
+		if (!enabled || currentQueue.isEmpty()) {
 			return Status.OK_STATUS;
 		}
 
@@ -103,6 +111,8 @@ public class ManagedVMNotificationAggregatorJob extends Job {
 
 		@Override
 		protected void createContentArea(Composite parent) {
+			parent.setLayout(new GridLayout(1, false));
+
 			Label label = new Label(parent, SWT.WRAP);
 			if (vms.size() > 1) {
 				label.setText(vms.size() + " new Java VMs were automatically added.");
@@ -110,11 +120,10 @@ public class ManagedVMNotificationAggregatorJob extends Job {
 				var name = vms.iterator().next().getName();
 				label.setText(name + " was automatically added.");
 			}
-			// label.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> {
-			// PreferencesUtil.createPreferenceDialogOn(Display.getDefault().getActiveShell(),
-			// JAVA_VM_PREFERENCES_PAGE_ID, new String[] { JAVA_VM_PREFERENCES_PAGE_ID },
-			// null).open();
-			// }));
+//			label.addSelectionListener(SelectionListener.widgetSelectedAdapter(e -> {
+//				PreferencesUtil.createPreferenceDialogOn(getShell(),
+//						JAVA_VM_PREFERENCES_PAGE_ID, new String[] { JAVA_VM_PREFERENCES_PAGE_ID }, null).open();
+//			}));
 		}
 	}
 }

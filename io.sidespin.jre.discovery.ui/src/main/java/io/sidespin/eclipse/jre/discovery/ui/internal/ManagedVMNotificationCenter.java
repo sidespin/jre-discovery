@@ -45,5 +45,7 @@ public class ManagedVMNotificationCenter implements IVMInstallChangedListener {
 	@Override
 	public void vmRemoved(IVMInstall vm) {
 	}
+	
+	
 
 }

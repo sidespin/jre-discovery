@@ -21,6 +21,8 @@ public class JREDiscoveryPreferences {
 
   public static final String WATCH_JRE_DIRECTORIES_KEY = Constants.PLUGIN_ID + ".watchJREDirectories";
 
+  public static final String NOTIFICATIONS_ENABLED_KEY = Constants.PLUGIN_ID + ".notificationsEnabled";;
+
   private static final JREDiscoveryPreferences INSTANCE = new JREDiscoveryPreferences();
 
   private JREDiscoveryPreferences() {

@@ -15,7 +15,6 @@
 package io.sidespin.eclipse.jre.discovery.core.internal.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 
@@ -32,5 +31,6 @@ public class JREDiscoveryPreferenceInitializer extends AbstractPreferenceInitial
 	    IEclipsePreferences store = InstanceScope.INSTANCE.getNode(Constants.PLUGIN_ID);
 	    store.putBoolean(JREDiscoveryPreferences.ENABLED_ON_STARTUP_KEY, true);
 	    store.putBoolean(JREDiscoveryPreferences.WATCH_JRE_DIRECTORIES_KEY, true);
+	    store.putBoolean(JREDiscoveryPreferences.NOTIFICATIONS_ENABLED_KEY, true);
 	  }
 }
