@@ -25,7 +25,7 @@ _JRE Discovery_ is available in the [Eclipse Marketplace](https://marketplace.ec
 Alternatively, in Eclipse:
 
 - open Help > Install New Software...
-- work with: `https://sidespin.github.io/jre-discovery/snapshots`
+- work with: `https://github.com/sidespin/jre-discovery/releases/download/latest/`
 - expand the category and select the JRE Discovery Feature
 - proceed with the installation
 - restart Eclipse
@@ -43,7 +43,7 @@ Open a terminal and execute the following command:
     
 > mvnw.cmd clean verify
 
-You can then install the generated update site from `io.sidespin.jre.discovery.site/target/io.sidespin.jre.discovery.site-<VERSION>-SNAPSHOT.zip`
+You can then install the generated update site from `io.sidespin.jre.discovery.site/target/repository`
 
 # License
 

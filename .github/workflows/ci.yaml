@@ -21,10 +21,14 @@ jobs:
         with:
           name: jre-discovery
           path: io.sidespin.jre.discovery.site/target/repository/*
-      - name: Deploy p2 update site
+
+      - name: Upload flat p2 update site
         if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
+        uses: marvinpinto/action-automatic-releases@latest
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: io.sidespin.jre.discovery.site/target/repository/
-          destination_dir: snapshots/
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+          files: |
+            io.sidespin.jre.discovery.site/target/flat-repository/*
