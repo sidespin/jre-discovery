@@ -10,11 +10,11 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <tycho.version>2.6.0</tycho.version>
+    <tycho.version>2.7.3</tycho.version>
     <tycho.extras.version>${tycho.version}</tycho.extras.version>
-    <tycho.test.platformArgs/>
+    <tycho.test.platformArgs />
     <tycho.test.jvmArgs>-Xmx512m</tycho.test.jvmArgs>
-	  <eclipse.p2.repo>https://download.eclipse.org/releases/2022-03</eclipse.p2.repo>
+    <eclipse.p2.repo>https://download.eclipse.org/releases/2022-06</eclipse.p2.repo>
   </properties>
   <url>https://github.com/sidespin/jre-discovery</url>
   <scm>
@@ -22,12 +22,12 @@
     <url>https://github.com/sidespin/jre-discovery</url>
     <developerConnection>scm:git:ssh://git@github.com/sidespin/jre-discovery.git</developerConnection>
   </scm>
-	<licenses>
-		<license>
-			<name>Eclipse Public License (EPL) v2.0</name>
-			<url>https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html</url>
-		</license>
-	</licenses>
+  <licenses>
+    <license>
+      <name>Eclipse Public License (EPL) v2.0</name>
+      <url>https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html</url>
+    </license>
+  </licenses>
   <repositories>
     <repository>
       <id>eclipse</id>
@@ -72,7 +72,6 @@
         </executions>
       </plugin>
     </plugins>
-
     <pluginManagement>
       <plugins>
         <plugin>
@@ -101,7 +100,9 @@
     <profile>
       <id>macosx</id>
       <activation>
-        <os><family>mac</family></os>
+        <os>
+          <family>mac</family>
+        </os>
       </activation>
       <properties>
         <tycho.test.platformArgs>-XstartOnFirstThread</tycho.test.platformArgs>
@@ -110,9 +111,9 @@
     <profile>
       <id>source-feature</id>
       <activation>
-      <file>
-        <exists>feature.xml</exists>
-      </file>
+        <file>
+          <exists>feature.xml</exists>
+        </file>
       </activation>
       <build>
         <plugins>
