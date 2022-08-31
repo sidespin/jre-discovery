@@ -151,7 +151,7 @@ public class VMDetectorManager implements IPreferenceChangeListener {
 	@Override
 	public void preferenceChange(PreferenceChangeEvent event) {
 		if (JREDiscoveryPreferences.WATCH_JRE_DIRECTORIES_KEY.equals(event.getKey())) {
-			if (Boolean.parseBoolean(String.valueOf(event.getNewValue()))) {
+			if (event.getNewValue() == null /* default value is true*/ || Boolean.parseBoolean(String.valueOf(event.getNewValue()))) {
 				startWatchingVMs();
 			} else {
 				stopWatchingVMs();
