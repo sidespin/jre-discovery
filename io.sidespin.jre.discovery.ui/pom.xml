@@ -3,7 +3,7 @@
   <parent>
     <groupId>io.sidespin.eclipse</groupId>
     <artifactId>jre.discovery</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
   </parent>
   <artifactId>io.sidespin.jre.discovery.ui</artifactId>
   <packaging>eclipse-plugin</packaging>

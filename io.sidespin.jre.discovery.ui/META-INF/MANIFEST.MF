@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Java Runtime Lookup UI
 Bundle-SymbolicName: io.sidespin.jre.discovery.ui;singleton:=true
-Bundle-Version: 0.0.1.qualifier
+Bundle-Version: 0.0.2.qualifier
 Bundle-Activator: io.sidespin.eclipse.jre.discovery.ui.internal.ManagedVMUIActivator
 Require-Bundle: io.sidespin.jre.discovery.core;bundle-version="0.0.1",
  org.eclipse.ui,
