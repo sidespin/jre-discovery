@@ -33,5 +33,13 @@ public class ManagedVMUtils {
 		}
 		return false;
 	}
+	
+	public static boolean wasJustDiscovered(IVMInstall vm) {
+		if (vm instanceof AbstractVMInstall) {
+			AbstractVMInstall svm = (AbstractVMInstall) vm;
+			return ManagedVMService.SESSION_ID.equals(svm.getAttribute("sessionId"));
+		}
+		return false;
+	}
 
 }

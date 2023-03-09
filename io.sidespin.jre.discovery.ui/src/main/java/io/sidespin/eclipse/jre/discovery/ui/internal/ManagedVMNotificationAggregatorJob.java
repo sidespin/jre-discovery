@@ -17,6 +17,7 @@ import static io.sidespin.eclipse.jre.discovery.core.internal.ManagedVMUtils.isM
 
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -86,11 +87,7 @@ public class ManagedVMNotificationAggregatorJob extends Job {
 			return;
 		}
 		synchronized (notifications) {
-			for (var vm : vms) {
-				if (isManagedVM(vm)) {
-					notifications.add(vm);
-				}
-			}
+			Stream.of(vms).filter(vm -> isManagedVM(vm)).forEach(notifications::add);
 		}
 		schedule(DELAY);
 	}

@@ -46,6 +46,8 @@ public class ManagedVMService implements ManagedVMEventListener {
 	private static final Pattern VERSION_PATTERN = Pattern.compile(".*(\\d).*"); //$NON-NLS-1$
 	private static final Pattern NOT_VERSION_PATTERN = Pattern.compile(".*-(\\d{4,})"); //$NON-NLS-1$
 
+	public static final String SESSION_ID = String.valueOf(System.nanoTime());
+	
 	public void addVM(ManagedVM mvm, IProgressMonitor monitor) throws CoreException {
 		var type = mvm.getType();
 		Assert.isNotNull(type, "VM type");
@@ -66,6 +68,7 @@ public class ManagedVMService implements ManagedVMEventListener {
 		vmStandin.setName(name);
 		vmStandin.setInstallLocation(directory);
 		vmStandin.setAttribute("managedVM", mvm.getPrefix());
+		vmStandin.setAttribute("sessionId", SESSION_ID);
 		vmStandin.convertToRealVM();
 		JavaRuntime.saveVMConfiguration();
 		System.err.println("Added " + mvm);

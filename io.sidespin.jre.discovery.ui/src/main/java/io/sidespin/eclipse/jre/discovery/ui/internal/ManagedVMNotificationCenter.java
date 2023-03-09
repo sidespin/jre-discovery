@@ -14,6 +14,7 @@
 package io.sidespin.eclipse.jre.discovery.ui.internal;
 
 import static io.sidespin.eclipse.jre.discovery.core.internal.ManagedVMUtils.isManagedVM;
+import static io.sidespin.eclipse.jre.discovery.core.internal.ManagedVMUtils.wasJustDiscovered;
 
 import org.eclipse.jdt.launching.IVMInstall;
 import org.eclipse.jdt.launching.IVMInstallChangedListener;
@@ -37,7 +38,10 @@ public class ManagedVMNotificationCenter implements IVMInstallChangedListener {
 
 	@Override
 	public void vmAdded(IVMInstall vm) {
-		if (isManagedVM(vm)) {
+		if (isManagedVM(vm) && 
+			// JavaRuntime.fireVMAdded is triggered on startup, for existing vms, 
+			// so we need to make sure we only notify user about newly discovered vms 
+			wasJustDiscovered(vm)) {
 			notificationJob.queue(vm);
 		}
 	}
