@@ -3,7 +3,7 @@
       id="io.sidespin.jre.discovery.feature"
       label="JRE Discovery Feature"
       provider-name="%providerName"
-      version="0.0.2.qualifier"
+      version="0.0.3.qualifier"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0"
       >
