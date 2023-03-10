@@ -9,7 +9,8 @@ It currently detects JREs managed by :
 - [JBang](https://www.jbang.dev/)
 
 It also detects JREs installed on platform-specific locations:
-- `/usr/lib/jvm` on Linux 
+- `/usr/lib/jvm` on Linux
+- `%PROGRAMFILES%\Eclipse Adoptium` on Windows
 
 Managed JREs will be automatically discovered on Eclipse startup, or, while running, when added by their respective Java managers.
 

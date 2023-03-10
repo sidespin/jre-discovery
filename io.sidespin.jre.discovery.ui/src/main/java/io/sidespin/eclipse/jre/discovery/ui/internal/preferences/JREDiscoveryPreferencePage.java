@@ -33,7 +33,7 @@ public class JREDiscoveryPreferencePage extends FieldEditorPreferencePage implem
 
   @Override
   public void init(IWorkbench workbench) {
-	  setDescription("Automatically detect JREs managed by SDKMan, JBang, asdf or Jabba. Also detects installations in /usr/lib/jvm on Linux.");
+	  setDescription("Automatically detect JREs managed by SDKMan, JBang, asdf or Jabba. Also detects installations in /usr/lib/jvm on Linux and Eclipse Adoptium installations on Windows.");
   }
 
   @Override
@@ -46,7 +46,7 @@ public class JREDiscoveryPreferencePage extends FieldEditorPreferencePage implem
     		JREDiscoveryPreferences.WATCH_JRE_DIRECTORIES_KEY, "Watch managed JRE directories",
         getFieldEditorParent());
     addField(watchDirectories);
-    
+
     BooleanFieldEditor displayNotifications = new BooleanFieldEditor(
     		JREDiscoveryPreferences.NOTIFICATIONS_ENABLED_KEY, "Enable notifications when new JREs are detected",
         getFieldEditorParent());

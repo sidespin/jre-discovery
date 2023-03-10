@@ -1,45 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
-<extension-point id="managedVMDetectorDefinition"
-					name="Managed VM Detector Definition"
-					schema="schemas/managedVMDetectorDefinition.exsd" />
-<extension
-         point="io.sidespin.jre.discovery.core.managedVMDetectorDefinition">
-      <simpleDetector
-            id="sdkman"
-            label="SDKMan"
-            directory="~/.sdkman/candidates/java"
-            isWatchingByDefault="true"
-       />
-       <simpleDetector
-       		id="jbang"
-       		label="JBang"
-       		directory="~/.jbang/cache/jdks"
-       		isWatchingByDefault="true"
-       />
-       <simpleDetector
-       		id="jabba"
-       		label="Jabba"
-       		directory="~/.jabba/jdk"
-       		isWatchingByDefault="true"
-       />
-       <simpleDetector
-       		id="asdf"
-       		label="asdf"
-       		directory="~/.asdf/installs/java"
-       		isWatchingByDefault="true"
-       />
-       <simpleDetector
-       		id="linux"
-       		label="System"
-       		directory="/usr/lib/jvm"
-       		isWatchingByDefault="true">
-       		<enablement>
-       			<systemTest property="osgi.os" value="linux"/>
-            </enablement>
-       </simpleDetector>
-   </extension>
-   <extension point="org.eclipse.core.runtime.preferences">
-      <initializer class="io.sidespin.eclipse.jre.discovery.core.internal.preferences.JREDiscoveryPreferenceInitializer"/>
-   </extension>
+	<extension-point id="managedVMDetectorDefinition"
+		name="Managed VM Detector Definition"
+		schema="schemas/managedVMDetectorDefinition.exsd" />
+	<extension
+		point="io.sidespin.jre.discovery.core.managedVMDetectorDefinition">
+		<simpleDetector
+			id="sdkman"
+			label="SDKMan"
+			directory="~/.sdkman/candidates/java"
+			isWatchingByDefault="true"
+		/>
+		<simpleDetector
+			id="jbang"
+			label="JBang"
+			directory="~/.jbang/cache/jdks"
+			isWatchingByDefault="true"
+		/>
+		<simpleDetector
+			id="jabba"
+			label="Jabba"
+			directory="~/.jabba/jdk"
+			isWatchingByDefault="true"
+		/>
+		<simpleDetector
+			id="asdf"
+			label="asdf"
+			directory="~/.asdf/installs/java"
+			isWatchingByDefault="true"
+		/>
+		<simpleDetector
+			id="linux"
+			label="System"
+			directory="/usr/lib/jvm"
+			isWatchingByDefault="true">
+			<enablement>
+				<systemTest property="osgi.os" value="linux" />
+			</enablement>
+		</simpleDetector>
+		<simpleDetector
+			id="adoptium"
+			label="Adoptium"
+			directory="${env_var:PROGRAMFILES}/Eclipse Adoptium"
+			isWatchingByDefault="true">
+			<enablement>
+				<systemTest property="osgi.os" value="win32" />
+			</enablement>
+		</simpleDetector>
+	</extension>
+	<extension point="org.eclipse.core.runtime.preferences">
+		<initializer
+			class="io.sidespin.eclipse.jre.discovery.core.internal.preferences.JREDiscoveryPreferenceInitializer" />
+	</extension>
 </plugin>
