@@ -22,11 +22,14 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
+import org.eclipse.core.variables.IStringVariableManager;
+import org.eclipse.core.variables.VariablesPlugin;
 
 import io.sidespin.eclipse.jre.discovery.core.IManagedVMDetector;
 import io.sidespin.eclipse.jre.discovery.core.IManagedVMWatcher;
@@ -55,10 +58,18 @@ public class VMDetectorManager implements IPreferenceChangeListener {
 	public synchronized void initialize() {
 		if (!initialized) {
 			var dd = ExtensionsReader.readVMDetectorExtensions();
+			IStringVariableManager stringVarManager = VariablesPlugin.getDefault().getStringVariableManager();
 			dd.forEach((id, d) -> {
-				File dir = new File(d.getDirectory().replace("\\", File.separator).replace("/", File.separator)
-						.replace("~", System.getProperty("user.home")));
-				DefaultManagedVMDetector detector = new DefaultManagedVMDetector(dir, "[" + d.getLabel() + "]",
+				var dir = d.getDirectory().replace("~", System.getProperty("user.home"));
+				try {
+					dir = stringVarManager.performStringSubstitution(dir);
+				} catch (CoreException e) {
+					e.printStackTrace();
+					return;
+				}
+				dir = dir.replace("\\", File.separator).replace("/", File.separator);
+				File folder = new File(dir);
+				DefaultManagedVMDetector detector = new DefaultManagedVMDetector(folder, "[" + d.getLabel() + "]",
 						d.isEnabledByDefault(), d.isWatchingByDefault());
 				detectors.add(detector);
 				var optWatcher = detector.getWatcher();

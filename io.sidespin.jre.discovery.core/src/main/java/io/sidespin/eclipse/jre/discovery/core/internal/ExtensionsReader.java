@@ -19,6 +19,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import org.eclipse.core.expressions.EvaluationContext;
+import org.eclipse.core.expressions.EvaluationResult;
+import org.eclipse.core.expressions.Expression;
+import org.eclipse.core.expressions.ExpressionConverter;
+import org.eclipse.core.expressions.ExpressionTagNames;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -50,7 +56,7 @@ public class ExtensionsReader {
 				}
 				IConfigurationElement[] elements = extension.getConfigurationElements();
 				for (IConfigurationElement element : elements) {
-					if ("simpleDetector".equals(element.getName())) {
+					if ("simpleDetector".equals(element.getName()) && isEnabled(element)) {
 						var dd = new ManagedVMDetectorDefinition();
 						dd.setId(element.getAttribute("id"));
 						dd.setLabel(element.getAttribute("label"));
@@ -67,6 +73,21 @@ public class ExtensionsReader {
 			}
 		}
 		return detectors;
+	}
+
+	static boolean isEnabled(IConfigurationElement detector) {
+		IConfigurationElement[] enabledWhen = detector.getChildren(ExpressionTagNames.ENABLEMENT);
+		if (enabledWhen.length == 0) {
+			return true;
+		}
+		try {
+			Expression expression = ExpressionConverter.getDefault().perform(enabledWhen[0]);
+			EvaluationResult result = expression.evaluate(new EvaluationContext(null, new Object()));
+			return result == EvaluationResult.TRUE;
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }
