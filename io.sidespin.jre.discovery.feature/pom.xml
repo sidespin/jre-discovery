@@ -4,7 +4,7 @@
   <parent>
     <artifactId>jre.discovery</artifactId>
     <groupId>io.sidespin.eclipse</groupId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
   </parent>
   <artifactId>io.sidespin.jre.discovery.feature</artifactId>
   <packaging>eclipse-feature</packaging>
