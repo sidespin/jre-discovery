@@ -8,6 +8,9 @@ It currently detects JREs managed by :
 - [Jabba](https://github.com/shyiko/jabba) 
 - [JBang](https://www.jbang.dev/)
 
+It also detects JREs installed on platform-specific locations:
+- `/usr/lib/jvm` on Linux 
+
 Managed JREs will be automatically discovered on Eclipse startup, or, while running, when added by their respective Java managers.
 
 ![Detected JREs](images/jre-discovery.png)
